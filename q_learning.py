@@ -26,7 +26,6 @@ def q_learning(mdp, num_episodes, T_max, epsilon=0.1):
             action = np.random.choice(np.arange(len(action_probs)), p=action_probs)
             
             next_state, reward = playtransition(mdp, state, action)
-            state = next_state
             
             episode_rewards[i_episode] += reward
             N[state, action] += 1
