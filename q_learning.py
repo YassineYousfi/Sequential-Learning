@@ -1,5 +1,6 @@
 import numpy as np 
 import pandas as pd
+import matplotlib.pyplot as plt
 
 def epsilon_greedy_exploration(Q, epsilon, num_actions):
     def policy_exp(state):
