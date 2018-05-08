@@ -24,9 +24,7 @@ def q_learning(mdp, num_episodes, T_max, epsilon=0.1):
             # epsilon greedy exploration
             action_probs = greedy_probs(state)
             action = np.random.choice(np.arange(len(action_probs)), p=action_probs)
-            
             next_state, reward = playtransition(mdp, state, action)
-            
             episode_rewards[i_episode] += reward
             N[state, action] += 1
             alpha = 1/(t+1)**0.85
@@ -37,7 +35,8 @@ def q_learning(mdp, num_episodes, T_max, epsilon=0.1):
             state = next_state
         V[i_episode,:] = Q.max(axis=1)
         policy = Q.argmax(axis=1)
-    
+        
+    print("Optimal policy is:\n", policy, "\nIts value is:\n", V[-1])
     rewards_smoothed = pd.Series(episode_rewards).rolling(int(num_episodes/10), min_periods=int(num_episodes/10)).mean()
     plt.plot(rewards_smoothed, c='red')
     plt.title("Reward cumulated over episodes smoothed over window size {}".format(int(num_episodes/10))) 
