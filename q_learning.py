@@ -15,7 +15,6 @@ def q_learning(mdp, num_episodes, T_max, epsilon=0.1):
     episode_rewards = np.zeros(num_episodes)
     policy = np.ones(mdp.S)
     V = np.zeros((num_episodes, mdp.S))
-    greedy_policy = np.zeros((num_episodes, mdp.S))
     for i_episode in range(num_episodes): 
         greedy_probs = epsilon_greedy_exploration(Q, epsilon, mdp.A)
         N = np.zeros((mdp.S, mdp.A))
