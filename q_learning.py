@@ -4,10 +4,10 @@ import matplotlib.pyplot as plt
 
 def epsilon_greedy_exploration(Q, epsilon, num_actions):
     def policy_exp(state):
-        A = np.ones(num_actions, dtype=float) * epsilon / num_actions
+        probs = np.ones(num_actions, dtype=float) * epsilon / num_actions
         best_action = np.argmax(Q[state])
-        A[best_action] += (1.0 - epsilon)
-        return A
+        probs[best_action] += (1.0 - epsilon)
+        return probs
     return policy_exp
 
 def q_learning(mdp, num_episodes, T_max, epsilon=0.1):
